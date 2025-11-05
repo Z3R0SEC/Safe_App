@@ -77,7 +77,7 @@ def login():
     conn.close()
 
     if row:
-        return jsonify({"user_id": row[0], "message": "Login success"}), 200
+        return jsonify({"user_id": row[0]}), 200
     return jsonify({"error": "Invalid credentials"}), 401
 
 
