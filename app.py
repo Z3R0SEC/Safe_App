@@ -43,6 +43,10 @@ def init_db():
 init_db()
 
 # ---------- ROUTES ----------
+@app.route("/")
+def ho():
+    return "app running on your app"
+
 
 @app.route("/register", methods=["POST"])
 def register():
