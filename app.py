@@ -1,15 +1,21 @@
+
+# Last Modification: 16 nov 2026
+# Reason: Added a route to chrck Saved Cordinates.
+# Contributor: Z3R0SEC
+
 import sqlite3
 from flask import Flask, request, jsonify
 from datetime import datetime
 
 app = Flask(__name__)
 
-# ---------- DATABASE ----------
+
+
+
 def init_db():
     conn = sqlite3.connect("alerts.db")
     c = conn.cursor()
 
-    # users table
     c.execute("""
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -18,7 +24,6 @@ def init_db():
         )
     """)
 
-    # alerts table
     c.execute("""
         CREATE TABLE IF NOT EXISTS alerts (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -29,12 +34,11 @@ def init_db():
         )
     """)
 
-    # --- Create default user: test / test ---
     try:
         c.execute("INSERT INTO users (username, password) VALUES (?, ?)", ("test", "test"))
-        print("✅ Default user created (test/test)")
+        print("Default user created (test/test)")
     except:
-        print("ℹ️ Default user already exists")
+        print("Default user already exists")
 
     conn.commit()
     conn.close()
@@ -42,7 +46,6 @@ def init_db():
 
 init_db()
 
-# ---------- ROUTES ----------
 @app.route("/")
 def ho():
     return "app running on your app"
